@@ -1,0 +1,11 @@
+# Site settings
+title: Cero vale todo 
+email: qihan [punto] dev [arrobal] gmail [punto] com 
+description: > # this means to ignore newlines until "baseurl:"
+    Notas personales de Chichi, generalmente sobre technologias.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "https://qihqi.github.com" # the base hostname & protocol for your site
+github_username:  qihqi
+
+# Build settings
+markdown: kramdown
