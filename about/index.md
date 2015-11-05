@@ -22,9 +22,7 @@ Hola soy Han Qi, exGoogler, exAmazonian, wolverine y polit&eacute;cnico (miran a
 Aqu&iacute; anoto las cosas cheveres
 que he aprendido o descubierto por ah&iacute;, generalmente sobre las tecnolog&iacute;as
 en software, o matem&aacute;ticas. Uno para fortalecer
-mis p&eacute;simas memorias, y dos quiz&aacute;s le sirve a alguien. Lo escribo en espa&ntilde;ol porque,
-si en algun d&iacute;a mis huevadas le sirve un carajo a alguien, quiero que sea un latino. No tengo nada
-contra los gringos pero ellos ya tiene demasiado recursos para lo que sea.
+mis p&eacute;simas memorias, y dos quiz&aacute;s le sirve a alguien. 
 
 Algunos de mis intereses t&eacute;cnicas son: Python, C++, arquitectura de software, Vim, Linux. Y los 
-matem&aacute;ticas son combinatoria y geometr&iacutea.
+matem&aacute;ticas son combinatoria y geometr&iacute;a.
