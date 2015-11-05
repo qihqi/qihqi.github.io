@@ -1,11 +1,95 @@
-# Site settings
-title: Cero vale todo 
-email: qihan [punto] dev [arrobal] gmail [punto] com 
-description: > # this means to ignore newlines until "baseurl:"
-    Notas personales de Chichi, generalmente sobre technologias.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://qihqi.github.com" # the base hostname & protocol for your site
-github_username:  qihqi
+title:            Cero vale todo
+description:      Notas personales de Han.
+disqus_shortname: C.V.T.
+reading_time:     true
+words_per_minute: 200
+logo:             images/me_gusta_face.png
+# Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
+# When testing locally leave blank or use http://localhost:4000
+# url: http://aronbordin.com/neo-hpstr-jekyll-theme
 
-# Build settings
-markdown: kramdown
+menu:
+  - title: 'Home'
+    url: '/'
+  - title: 'About'
+    url: '/about'
+  - title: 'Etiquetas'
+    url: '/tags'
+  - title: 'Categor&iacute;as'
+    url: '/categories'
+    type: 'categories'
+#  - title: 'Favorites'
+#    url: '#'
+#    submenu:
+#      - title: 'highlighter'
+#        url: '/code-highlighting-post/'
+#      - title: 'intro'
+#        url: '/readability-post/'
+
+# Owner/author information
+owner:
+  name:           Han Qi
+  site:           https://qihqi.github.io
+  avatar:         images/avatar.jpg
+  bio:            "Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
+  email:          qihan [punto] dev [arrobal] gmail
+  github: qihqi
+  # Social networking links used in footer. Update and remove as you like.
+#  facebook:
+#  stackexchange:
+#  linkedin:
+#  instagram:
+#  flickr:
+#  tumblr:
+#  # google plus id, include the '+', eg +AronBordin
+#  google_plus:
+
+social:
+  - title: "github"
+    url: "https://github.com/qihqi"
+  - title: "linkedin"
+    url: "https://www.linkedin.com/profile/view?id=AAIAABBEARkBmmBozL_YGkPQOPKHrzfYiIroXU4&trk=nav_responsive_tab_profile"
+#  - title: "youtube"
+#    url: "https://www.youtube.com/channel/UCfnSek-9HPWOx5e2pH7VFgg"
+# Background image to be tiled on all pages
+background: images/matrix.jpg
+
+# Analytics and webmaster tools stuff goes here
+#google_analytics:
+#google_verify:
+## https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+#bing_verify:
+
+# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone:    America/Guayaquil
+future:      true
+highlighter: pygments
+markdown:    kramdown
+gems:
+  - jekyll-sitemap
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink:   /:categories/:title/
+
+# Amount of post to show on home page
+paginate: 5
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: true
+
+  coderay:
+    coderay_line_numbers: nil
+    coderay_line_numbers_start: 1
+    coderay_tab_width: 4
+    coderay_bold_every: 10
+    coderay_css: class
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "_draft"]

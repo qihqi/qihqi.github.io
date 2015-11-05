@@ -2,7 +2,9 @@
 layout: post
 title:  "Una forma alterna de generar XML"
 date:   2015-10-22
-categories: python xml ats
+tags: python xml ats
+categories: programacion python
+
 ---
 
 ML;NL(TL;DR): Si has hecho p&aacute;ginas con plantillas de HTML, puedes usar lo mismo para XML.

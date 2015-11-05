@@ -2,7 +2,8 @@
 layout: post
 title:  "Log de entrevista: Google"
 date:   2015-10-22
-categories: python xml ats
+categories: programacion
+tags: java python algoritmos
 ---
 Lo de abajo son las preguntas de entrevistas que me preguntaron en la ronda de entrevista por tel&eacute;fono 
 con Google. Lo escrib&iacute; hace par de meses para apoyar a mi mejor amiga que estaba aplicando para ser

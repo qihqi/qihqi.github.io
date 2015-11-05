@@ -2,7 +2,8 @@
 layout: post
 title:  "Teorema de Matrimonio Estable, y un aspecto machista de la sociedad"
 date:   2015-10-31
-categories: matematica combinatoria grafo apareamiento
+tags: matematica combinatoria grafo apareamiento
+categories: matematicas
 ---
 
 Hace mucho mucho tiempo, en un lugar muy muy lejano, habia un pueblo aislado de los otros pueblos.
@@ -10,6 +11,7 @@ El pueblo hay \\( n \\) hombres y \\( n \\) mujeres solteros en edad de casarse.
 algo muy importante para la estabilidad de la sociedad del pueblo, la gente
 pregunta, &iquest; hay como casarse a los chicos, para que sea un <i>matrimonio estable</i>, es decir, 
 que no haya el caso de que un marido de una, y una mujer de otro, prefieren escapar y estar juntos?
+
 
 Formalmente, asumimos que cada hombre tiene una lista secreta que orden&oacute; 
 a las mujeres en orden de su perferencia, y asi
