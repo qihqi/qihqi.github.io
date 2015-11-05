@@ -31,7 +31,7 @@ owner:
   name:           Han Qi
   site:           https://qihqi.github.io
   avatar:         images/avatar.jpg
-  bio:            "Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
+  bio:            "Cero vale todo"
   email:          qihan [punto] dev [arrobal] gmail
   github: qihqi
   # Social networking links used in footer. Update and remove as you like.
@@ -52,7 +52,7 @@ social:
 #  - title: "youtube"
 #    url: "https://www.youtube.com/channel/UCfnSek-9HPWOx5e2pH7VFgg"
 # Background image to be tiled on all pages
-background: images/matrix.jpg
+background: 
 
 # Analytics and webmaster tools stuff goes here
 #google_analytics:

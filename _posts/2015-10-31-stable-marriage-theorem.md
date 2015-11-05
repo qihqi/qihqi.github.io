@@ -7,7 +7,7 @@ categories: matematicas
 ---
 
 Hace mucho mucho tiempo, en un lugar muy muy lejano, habia un pueblo aislado de los otros pueblos.
-El pueblo hay \\( n \\) hombres y \\( n \\) mujeres solteros en edad de casarse. Y el matrimonio es 
+El pueblo hay  \\( n \\)  hombres y \\( n \\) mujeres solteros en edad de casarse. Y el matrimonio es 
 algo muy importante para la estabilidad de la sociedad del pueblo, la gente
 pregunta, &iquest; hay como casarse a los chicos, para que sea un <i>matrimonio estable</i>, es decir, 
 que no haya el caso de que un marido de una, y una mujer de otro, prefieren escapar y estar juntos?
@@ -18,8 +18,8 @@ a las mujeres en orden de su perferencia, y asi
 mismos, cada mujer orden&oacute a los hombres en su perferencia. El orden de cada persona puede ser 
 distinta, ya que cada persona tiene su individualidad, como en la vida real. Y asumimos que todos 
 terminan casados al final (no tanto como la vida real, ouch). Lo que la gente no quiere que pase, es que 
-haya 2 parejas, digamos \\( (H_1, M_1) \\) y \\( (H_2, M_2) \\) donde \\( H_1 \\) prefiere a \\( M_2 \\)
-mas que su esposa \\( M_1 \\) y  \\( M_2 \\) prefiere a \\(H_1\\) mas que su esposo \\( H_2 \\).
+haya 2 parejas, digamos  (Goku, Chi-Chi)  y  (Vegeta, Bulma)  donde  Goku  prefiere a  Bulma 
+mas que su esposa  Chi-Chi  y   Bulma  prefiere a Goku mas que su esposo  Vegeta .
 
 La buena noticia es que, en 1962, dos matem&aacute;ticos demostraron que, dado que el n&uacute;mero de hombres
 y mujeres son iguales, siempre hay como hacer que todos los matrimonios estable. Y de hecho, ellos formularon 
@@ -40,19 +40,19 @@ de un a&ntilde;o o dos de noviazgo terminan casando, y ah&iacute; tienen tus mat
 Y porque carajo eso funca? Bueno la intuicion es lo siguiente: primero se nota que, aunque los hombres
 amarra y despues puede ser abandonados, las mujeres nunca vuelve soltera una vez amarrada. Es decir 
 el numero de solteras disnumiye estrictamente. Entonces el proceso tiene que terminar.
-Cuando el proceso termina, si hubiera 2 parejas, digamos \\( (H_1, M_1) \\) y \\( (H_2, M_2) \\),
-entonces, como \\( H_1 \\) prefiere a \\( M_2 \\), entonces significa que \\(H_1\\) declar&oacute; antes
-que su esposa actual. Y como \\(M_2\\) esta con otra persona \\(H_2\\), significa que \\(M_2\\) rechaz&oacute;
-a \\(H_1\\). Entonces no puede preferir a \\(H_1\\) m&aacute;s que \\(H_2\\). 
+Cuando el proceso termina, si hubiera 2 parejas, digamos  (Goku, Chi-Chi)  y  (Vegeta, Bulma) ,
+entonces, como  Goku  prefiere a  Bulma , entonces significa que Goku declar&oacute; antes
+que su esposa actual. Y como Bulma esta con otra persona Vegeta, significa que Bulma rechaz&oacute;
+a Goku. Entonces no puede preferir a Goku m&aacute;s que Vegeta. 
 
 Bueno, una vez sabiendo como obtener estabilidad social del pueblo, otra pregunta que podemos hacer es, 
-el proceso descrito combine m&aacute;s a los hombres o a las mujeres?
+el proceso descrito conviene m&aacute;s a los hombres o a las mujeres?
 
 Aparentemente a las mujeres mas, ya que ellas no tienen que tomar iniciativas, una vez amarrada nunca es 
 rechazada, y si cambia de pelado es por uno mejor. Y los hombres hace todo, puede salir con corazones rotos
 varias veces hasta encontrar la final. Pero el resultado no es asi.
 
-Puede que el proceso combine a las mujeres, pero el resultado combine a los hombres. De hecho, el apareamiento 
+Puede que el proceso conviene a las mujeres, pero el resultado conviene a los hombres. De hecho, el apareamiento 
 obtenido de la forma descrito arriba es llamado uun apareamiento "optimo para hombres" (male-optimal), y su 
 definici&oacute;n es: "los hombres termina con la mejor mujer que quiere estar con el, y las mujeres termina
 con el peor hombre que ella puede aceptar" (Donde las definiciones de "mejor" y "peor" es basado en el escala 

@@ -76,5 +76,5 @@ Cuando volv&iacute; a ver el problema, y viendo las p&aacute;ginas web que estoy
 peg&oacute; que HTML es XML, HTML es XML!! HTML es XML!!! (repite 3 veces para las cosas importantes). Y teniendo
 ya a&ntilde;os escribiendo platillas que genera HTML, porque no uso lo mismo para XML!!.
 
-Al final, escrib&iacute; un plantilla de jinja2 [aqui](https://github.com/qihqi/HenryFACTService/blob/new_schema/templates/accounting/ats.xml). Que es basicamente copia y pega del formato de arriba.
+Al final, escrib&iacute; un plantilla de jinja2 [**aqui**](https://github.com/qihqi/HenryFACTService/blob/new_schema/templates/accounting/ats.xml). Que es basicamente copia y pega del formato de arriba.
 

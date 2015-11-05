@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Log de entrevista: Google"
-date:   2015-10-22
+date:   2015-10-10
 categories: programacion
 tags: java python algoritmos
 ---
@@ -45,14 +45,10 @@ bool hasNext() que te diga si hay siguiente elemento, y Object next() que retorn
 Es decir algo asi:
 {% highlight java %}
 class PeekIterator implements Iterator {
- PeekIterator(Iterator i) {} 
- bool hasNext() {
-  
- }
- Object next() {
-}
-Object peek() {
-} 
+    PeekIterator(Iterator i) {} 
+    bool hasNext() {}
+    Object next() {}
+    Object peek() {} 
 } 
 {% endhighlight %}
 
@@ -60,31 +56,31 @@ Pensado un rato, para poder saber cual es el siguiente elemento cuando llama pee
 
 {% highlight java %}
 class PeekIterator implements Iterator {
- Iterator source;
- Object temp;
- PeekIterator(Iterator i) {
-   source = i;
- } 
- bool hasNext() {
-    if (temp != null) {
-      return true; 
-   } 
-   return source.hasNext();
- }
- Object next() {
-  if (temp != null) {
-    Object return = temp;
-   temp = null;
-    return temp;
-  }
-  return source.next();
-}
-Object peek() {
-   if (temp == null) {
-     temp = source.next();
-   }
-  return temp;
-} 
+    Iterator source;
+    Object temp;
+    PeekIterator(Iterator i) {
+        source = i;
+    } 
+    bool hasNext() {
+        if (temp != null) {
+            return true; 
+        } 
+        return source.hasNext();
+    }
+    Object next() {
+        if (temp != null) {
+            Object return = temp;
+            temp = null;
+            return temp;
+        }
+        return source.next();
+    }
+    Object peek() {
+        if (temp == null) {
+            temp = source.next();
+        }
+        return temp;
+    } 
 } 
 {% endhighlight %}
 
@@ -123,14 +119,14 @@ teniendo esta funcion, el resto es sencillo:
 
 {% highlight python %}
 def printallcombination(format):
-  num_interrogation = count(filter(lambda s: s=='?'), format)
-  start = [0] * num_interrogation
-  print_format = format.replace('?', '%d')
-  while True:
-     print print_format % start
-     start = increment_one(start)
-     if len(start) > num_interrogation:
-        break
+    num_interrogation = count(filter(lambda s: s=='?'), format)
+    start = [0] * num_interrogation
+    print_format = format.replace('?', '%d')
+    while True:
+        print print_format % start
+        start = increment_one(start)
+        if len(start) > num_interrogation:
+            break
 {%endhighlight%}
 
 (Y parece que le gust&oacute; que he reusado el c&oacute;digo anterior. :))
