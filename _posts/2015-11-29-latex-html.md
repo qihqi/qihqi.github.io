@@ -44,7 +44,7 @@ Bueno, luego para poner f&oacute;rmulas, primero copias y pegas lo siguiente jus
 {% highlight html %}
 <head>
 <script type="text/javascript"
-  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 </head>
 {% endhighlight %}
@@ -61,7 +61,7 @@ cada lado. Por ejemplo, esto:
 <html>
 <head>
 <script type="text/javascript"
-  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 </head>
 <body>
