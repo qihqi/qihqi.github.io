@@ -10,8 +10,8 @@ Primer on Dependency Injection
 ------------------------------
 
 In a system constructed in a object oriented fashion, we usually
-have two types of objects: Data object and Service objects. Where data
-object stores the data and service objects manipulates the data. For example,
+have two types of objects: _Data objects_, where
+stores the data and _Service objects_, which manipulates the data. For example,
 if it is a database backed application it usually has some
 object that talks to the database, which is the Service object.
 
@@ -77,7 +77,7 @@ class ServiceC(object):
         pass
 {% endhighlight %}
 
-[This (pretty long) video explains it very well](https://www.youtube.com/watch?v=-FRm3VPhseI).
+[This (pretty long) Google talk explains this idea very well](https://www.youtube.com/watch?v=-FRm3VPhseI).
 
 Sometimes the term *Dependency Injection* is sometimes refers a dependency injection
 framework, like Spring and Guice for Java, all that those framework does it to
@@ -161,10 +161,12 @@ if __name__ == '__main__':
     bottle.run(app)
 {% endhighlight %}
 
-Uses some clever decorator to pass the dependent service as parameters.
-This makes it a little nicer because the index function is not reading
+We can write a custom decorator to pass the dependent service as parameters to 
+the needed function.
+This makes it look little nicer, and gives the impression that index function is not reading
 globals anymore. However, we cannot directly call index with custom a, b and
-c as the decorator call replaces the old function with a wrapped one.
+c as the decorator call replaces the old function with a wrapped one. So it's really
+the same.
 
 Of course we can test the unwrapped version by not using decorator syntax,
 like this
