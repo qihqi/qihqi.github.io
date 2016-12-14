@@ -158,6 +158,8 @@ related works mentioned above uses either sheet music or MIDI
 as input, so we need to create our own baseline instead of 
 just refering the results above.
 
+![](/images/fully.png)
+
 For baseline model we just used fully connected neural networks
 trying to map a vector of amplitudes directly to the corresponding
 vector of amplitudes. We have found this nice 
@@ -173,6 +175,7 @@ those two vectors.
 
 Initially, we thought that the model will not converge at all, as the musical structure
 in wav are very subtle. However the model did eventually converge.
+![](/images/loss1.png)
 
 #insert loss curve
 
@@ -261,18 +264,24 @@ be several 1’s in the ground truth.
 
 #losscurve?
 
-After training for a few hours, here is one of the generated samples:
+After training for a few hours, here is one of the generated samples
+(converted to from midi to mp3):
 
 original melody: 
 
 <audio controls>
-  <source src="/assets/melody.mid" type="audio/midi">
+  <source src="/assets/1_melody.mp3" type="audio/mp3">
 </audio> 
 
-with accompaniment: 
+generated accompaniment:
+<audio controls>
+  <source src="/assets/2_accompaniment.mp3" type="audio/mp3">
+</audio> 
+
+combined together:
 
 <audio controls>
-  <source src="/assets/totalchange2.mid" type="audio/midi">
+  <source src="/assets/3_mix.mp3" type="audio/mp3">
 </audio> 
 
 Here we combined the generated accompaniment back with the melody. We can 
@@ -333,3 +342,11 @@ Though Xuan did more preprocessing and I did more model programming.
 
 References:
 ----------
+Ilya Sutskever, Oriol Vinyals, Quoc V. Le.  Sequence to Sequence Learning with Neural Networks, 2015.
+ 	[arXiv:1409.3215](https://arxiv.org/abs/1409.3215) [cs.CL]
+
+Daniel Johnson. Composing Music With Recurrent Neural Networks. [http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/](http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/)
+
+Douglas Eck (Google Brain). Magenta. [https://magenta.tensorflow.org/welcome-to-magenta](https://magenta.tensorflow.org/welcome-to-magenta)
+
+Andrej Kaparthy. The Unreasonable Effectiveness of Recurrent Neural Networks, 2015. [http://karpathy.github.io/2015/05/21/rnn-effectiveness/](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
