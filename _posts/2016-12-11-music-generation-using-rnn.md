@@ -14,6 +14,8 @@ UC Berkeley.
 Background and Problem Statement
 ------------------------------
 
+![](/images/music.png)
+
 
 When we listen to a song we are usually listening to a rich 
 combination sounds with different properties, such as vocals,
@@ -76,14 +78,35 @@ chosen the first network.
 Side note on music data format
 ------------------------------
 
-Music are stored as full semantic representation, such 
+Music are either stored as full semantic representation, such 
 as pdfs of sheet music, or stored as full expressed 
 representation, such as raw audio wave. Usually we work
-with something in between, like mp3 or MIDI.
+with some format that lies in between of those extremes, like mp3 or MIDI.
+
+![](/images/midi.png)
+
+<center>Spectrum of music format</center>
+
+
+### Wav
+
+Wav files are how raw audios are recorded. We can read wavs directly into
+a numpy array using scipy's io module.
+
+{% highlight python %}
+In [12]: import scipy.io.wavfile
+In [13]: x = scipy.io.wavfile.read('./1980s-Casio-Piano-C5.wav')
+In [14]: x
+Out[14]: (44100, array([ 13,   0,   4, ..., -36, -27, -49], dtype=int16))
+
+{% endhighlight %}
+
+Here the first element of the tuple is number of amplitudes per second, and 
+the second element is an array that represent the *amplitudes* at a time.
 
 ### MIDI
-MIDIs sits very close to sheet music, as it provides pitches
-of individual notes played, but drops the semantic information
+MIDIs are very close to sheet music in the music format spectrum, as it provides pitches
+of individual notes played, however it drops the semantic information
 on measures and annotations. 
 
 To access the information in MIDI files, we used the 
@@ -117,21 +140,6 @@ care NoteOnEvent and the corresponding NoteOffEvent(not shown). The first
 number in the 'data' field is the instrument key code which maps one-to-one to 
 the pitch of the note. 
 
-### Wav
-
-Wave files are how raw audios are recorded. We can read wavs directly into
-a numpy array using scipy's io module.
-
-{% highlight python %}
-In [12]: import scipy.io.wavfile
-In [13]: x = scipy.io.wavfile.read('./1980s-Casio-Piano-C5.wav')
-In [14]: x
-Out[14]: (44100, array([ 13,   0,   4, ..., -36, -27, -49], dtype=int16))
-
-{% endhighlight %}
-
-Here the first element of the tuple is number of amplitudes per second, and 
-the second element is an array that represent the *amplitudes* at a time.
 
 
 Related Work
@@ -177,9 +185,8 @@ Initially, we thought that the model will not converge at all, as the musical st
 in wav are very subtle. However the model did eventually converge.
 ![](/images/loss1.png)
 
-#insert loss curve
 
-The produced results have lots of random noise in them, through we could still
+The produced results have lots of random noise in them, though we could still
 find some "musicalness" in them.
 
 Current Model
@@ -227,6 +234,8 @@ The heuristics is that they both have very different behaviors even having
 the same melody. So it could be easier to learn a simpler patterns than learning all
 at once. This is a similar idea to "curricular learning".
 
+
+<img src="/images/vectorencoding.png" width="150" />
 To represent the each MIDI file as matrix for training, 
 we could try treat those events as "words" in our alphabet, 
 to embed those events directly vectors similar to word2vec
@@ -235,7 +244,7 @@ care the pitches of the notes, so we used one-hot-vector encoding for the
 notes. We restrict the pitch range to 78 distinct notes, which is 6 octaves
 (each octave has 12 distinct “half notes”). The result will be a \\(t \\times n\\) matrix,
 with \\( t \\) represents which time tick and \\( n\\) represents which notes are on at that
-time tick.
+time tick (see fragment in left).
 
 After our preparation, we are ready for the training. 
 The model consists of 50 LSTM neurons for encoding and 50 for decoding. 
@@ -261,8 +270,6 @@ generated notes with the original one by computing the binary crossentropy on
 each note and sum all of them. Note that we cannot just use categorical 
 crossentropy because there could
 be several 1’s in the ground truth.
-
-#losscurve?
 
 After training for a few hours, here is one of the generated samples
 (converted to from midi to mp3):
