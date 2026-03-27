@@ -1,0 +1,38 @@
+site_name: Han's personal blog
+site_description: 
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.instant
+    - navigation.top
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: false
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+plugins:
+  - search
+  - blog
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+nav:
+  - Home: index.md
+  - Blog:
+      - "Migrating From Nvidia GPU to Google TPU": posts/migrating-nvidia-gpu-to-google-tpu.md
+      - "Dependency Injection in Bottle/Flask (Python)": posts/dependency-injection-python.md
+      - "Como tipear f&oacute;rmulas ch&eacute;veres in cualquier compu, sin instalar nada": posts/latex-html.md
+      - "Teorema de Matrimonio Estable, y un aspecto machista de la sociedad": posts/stable-marriage-theorem.md
+      - "Una forma alterna de generar XML": posts/una-forma-alterna-de-generar-xml.md
+      - "Log de entrevista: Google": posts/google-entrevista-tel.md
