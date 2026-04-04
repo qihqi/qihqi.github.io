@@ -2,7 +2,6 @@ site_name: Han's personal blog
 site_description: 
 theme:
   name: material
-  language: es
   features:
     - navigation.instant
     - navigation.top
