@@ -5,35 +5,43 @@
 ## TL; DR
 
 So I started to summarize what I have learned in the 3 years working for growing 
-adoption of TPUs, largely be appearing to PyTorch users. Having worked in both
+adoption of TPUs, largely be appearing to PyTorch users. I have worked in both
 torch-xla and torchax, and a successful-ish port of vllm to tpu (tpu-inference).
 
 Half way through writing this article, I realized the conclusion that jumps out of the page is:
 
-> To use Google TPU, you want to use Jax.
+> The work of migrating to TPU is to migrate to Jax.
 
-In other words:
-
-> Migrating to TPU implies migrating to Jax.
-
-and this is actually a good news. Here goes the rest of article.
+and this is actually a good thing.
 
 
 ## Introduction
 
 So you have a ML team training and serving models on GPUs in the Cloud, and 
 you are curious about TPUs, for whatever reason.
-maybe it's the success of Gemini, maybe it's because Nvidia GPUs are too expensive or sold out,
-or maybe, you just want to diversify and not put all eggs on one hardware vendor.
-
-The key question is what does migrating to TPU mean for my team and codebase?
-To what extend it is a full rewrite of all the models and infra? OR is a simple device name change
-and everything just works? The answer is much more nuanced. However, 
-the first step is to understand the TPU computational model and how it differs
-from GPU.
+maybe it's the success of Gemini, maybe it's because Nvidia GPUs are too expensive or sold out, or maybe, you just want to diversify and not put all eggs on one hardware vendor.
 
 
-## TPU vs. GPU the mental model
+Now, you hear that migrating to TPU is migrating JAX, and if you are like the most of
+GPU users, you are most likely using PyTorch now. So you are like "damn I need to 
+rewrite my entire codebase now?" 
+
+The bad news is you need to rewrite a sizable portion, and the good news is that
+you want to rewrite those anyways.
+
+The argument goes like this:
+1. The programming model of GPU, as defined by PyTorch, and the programming model
+   of TPU, as defined by XLA (the compiler that targets TPU) are fundamentally different.
+2. Therefore, any infra-ish code assuming those model need to be rewritten anyways.
+3. When you rewrite those parts, it's important to adopt the XLA mental model. 
+4. Jax exposes XLA programming model exactly to the user in the most directly controllable way. Therefore it's the best choice.
+
+Besides the technical argument above, there is also a social argument of choosing JAX 
+if you have chosen TPU: Google uses it itself. I will not go into details on that.
+
+## 1. TPU vs. GPU the mental model
+
+**Summary: **
 
 | Dimension | Nvidia GPU | Google TPU |
 | --- | --- | --- |
@@ -122,7 +130,7 @@ as Jax on GPU is perfectly feasible.
   is described in detail in the [LazyTensor paper](https://arxiv.org/pdf/2102.13267)
 
 
-## What this means for Pytorch users
+## 2. What code must be rewritten no-matter-what
 
 If you are a PyTorch users and have a bunch of code written for Pytorch
 then chances are you need to rewrite some of the code. There is one kind 
@@ -136,8 +144,8 @@ model fast on GPU. This means:
   many tensors.
 * Overall train loop; because now you need to be aware of the shape change and recompilation.
 
-What code can avoid the rewrite? The math, including the models themselves, or any algorithm
-implemented with pure torch ops that is meant to express the math (not meant to speed things up).
+What code can you theoretically avoid the rewrite? The math, 
+including the models themselves, or any algorithm expressed with pure torch ops that is meant to express the math. Wait a minute, but if we migrate to JAX, don't we have to rewrite this part too? Well this is the bit that you can get away with `torchax`, more on that later.
 
 Note that, because PyTorch prevelent eager mode; many model code in the wild has a lots of non-math
 components in it's `forward` function. Like logging, writing out metrics to wandb etc, those pieces are likely
@@ -148,13 +156,89 @@ migrate to Jax. There are roughly 4 strategies you can adopt, (and mix-and-match
 
 1. Rewrite by hand. After its done, you will have a pure Jax code base.
 2. Rewrite with help of LLM agents.
-3. Rewrite with help of compiler-based, programatic source-to-source rewrites.
-4. Adopt a torch-frontend for Jax, and only rewrite the infra to Jax, and keep the model code in torch.
+3. Rewrite with help of compiler-based, programatic source-to-source rewrites. i.e. [ml-switcheroo](https://github.com/SamuelMarks/ml-switcheroo)
+4. Adopt a torch-frontend for Jax, and only rewrite the infra to Jax, and keep the model code in torch. i.e. [torchax](https://google.github.io/torchax/)
 
-I will focus on 3 and 4, because the first 2 are pretty straight-forward.
-   
-
-If you have a lots of models, and little infra, you can use [torchax](https://google.github.io/torchax/) is the adapter layer 
+If you have a lots of models, and little infra, you can use [torchax] is the adapter layer 
 to Jax. Otherwise, you can fully rewrite to Jax. 
 
 However, regardless which you choose, you are migrating to Jax.
+
+
+## 3. How should one choose?
+
+Let's go through few scenarios:
+
+### 1. You are a model builder with a handful of models 
+
+Say, you are fundation model builder like Anthropic. You have one model that is your product (probably with different
+variants / sizes). However, to train this model, you might have a very complex
+infra setup in managing the clusters, fault tolerances, implementing different
+parallelisms etc etc. 
+
+As we covered above, if you migrate to TPU, all the infra stuff will need to 
+rewritten, and you actually want that, you want to squeeze out the performance
+of TPU, so you want to do things the TPU way.
+
+Now, the model definition itself is actually small part of your codebase, so you might
+as well as rewrite it. You can get started with pointing your favorite 
+agent to it, or just discard it and start by forking a high quality Jax 
+reference implementation, like [maxtext](https://github.com/AI-Hypercomputer/maxtext) for LLMs
+and [maxdiffusion](https://github.com/AI-Hypercomputer/maxdiffusion) and go from there.
+
+### 2. You have your own ML framework that is implemented on top of torch
+
+Say you implemented your own abstraction on top of torch, so your researchers
+define their model and train loop in terms of your homegrown ML library. Torch 
+is used to implement a backend of your ML library.
+
+In such case, you can implement a backend for your library in Jax. If your library
+did not expose too much torchiness, that should not be too hard, and everyone using
+your framework can work unchanged. This is of course an very idealistic scenario.
+
+### 3. You have many many models built by different teams, but they share the infra.
+
+For this scenario maybe using torchax as an adapter layer is favorable. You can 
+rebuild the infra layer in Jax, and keep the model definitions the same. In this scenario
+the purer the model (i.e. just math) the better.
+
+
+## 4. Why is having to move to JAX a good thing?
+
+As I said, framing the problem as: "I need to migrate from Pytorch to JAX, let me figure 
+out how and many much it costs", is an easier problem to solve vs. "I need to migrate from GPU
+to TPU".
+
+Here is why, first of all, if you frame it as a GPU -> TPU problem, first you need
+to get some TPUs. That means start talking to Google cloud sales, getting provisions,
+getting your engineers to use google cloud, then TPU software ecosystem etc etc. 
+However, if you frame it as a ML framework migration, you can start right a way! 
+Because, JAX runs perfectly fine on GPU! Sure, getting Jax running on GPU
+does not automatically imply it runs on TPU (because of custom CUDA kernels and such), but 
+the delta is known, and bounded.
+
+Second of all, your engineers can make a much accurate estimate on what it cost 
+to migrate to a different library than migrating to a hardware that the engineer hasn't
+used. The estimate number can be large, but known large number is much better than unknown.
+
+Third, Agents. AI Agents work best then it can verify the work and iterate. You can test
+a torch and Jax problem side-by-side on the same GPU machine.
+
+Fourth, moving to Jax actually have other benefits other than unlocks multi-hardware. I'll
+not expand here.
+
+## 5. What if I insist on using torch on TPU?
+
+Torch on TPU as something that has same programming model as PyTorch-CUDA simply
+does not exist. Your choice here are to use [torch-xla](https://github.com/pytorch/xla) or [torchax](https://github.com/google/torchax).
+
+Having worked on both projects, my key insight on their philosophical differences are:
+* torch-xla tries to hide the fact that there is a graph compilation going on, by abstracting
+  it behind lazy-tensor.
+* torchax explicitly exposes the Jax-ness and `jitting`.
+
+This philosophical difference means that getting top performance in torch-xla
+is more challenging, because you don't really know when it recompiles, and what 
+is the graph fragment it recompiled. You can trying to poke holes on the abstraction
+trying to get inner details, but if you do, then the abstraction becomes leaky and get
+in the way.

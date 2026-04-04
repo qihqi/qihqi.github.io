@@ -2,7 +2,6 @@ site_name: Han's personal blog
 site_description: 
 theme:
   name: material
-  language: es
   features:
     - navigation.instant
     - navigation.top
@@ -31,8 +30,3 @@ nav:
   - Home: index.md
   - Blog:
       - "Migrating From Nvidia GPU to Google TPU": posts/migrating-nvidia-gpu-to-google-tpu.md
-      - "Dependency Injection in Bottle/Flask (Python)": posts/dependency-injection-python.md
-      - "Como tipear f&oacute;rmulas ch&eacute;veres in cualquier compu, sin instalar nada": posts/latex-html.md
-      - "Teorema de Matrimonio Estable, y un aspecto machista de la sociedad": posts/stable-marriage-theorem.md
-      - "Una forma alterna de generar XML": posts/una-forma-alterna-de-generar-xml.md
-      - "Log de entrevista: Google": posts/google-entrevista-tel.md
