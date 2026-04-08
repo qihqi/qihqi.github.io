@@ -1,4 +1,4 @@
-# How to migrate From Nvidia GPU to Google TPU
+# How to migrate From Nvidia GPU to Google TPU \[Part 1\]
 
 *Published: 2026-03-24*
 
@@ -30,14 +30,15 @@ The bad news is you need to rewrite a sizable portion, and the good news is that
 you want to rewrite those anyways.
 
 The argument goes like this:
-1. The programming model of GPU, as defined by PyTorch, and the programming model
-   of TPU, as defined by XLA (the compiler that targets TPU) are fundamentally different.
-2. Therefore, any infra-ish code assuming those model need to be rewritten anyways.
-3. When you rewrite those parts, it's important to adopt the XLA mental model. 
-4. Jax exposes XLA programming model exactly to the user in the most directly controllable way. Therefore it's the best choice.
+
+  1. The programming model of GPU, as defined by PyTorch, and the programming model
+    of TPU, as defined by XLA (the compiler that targets TPU) are fundamentally different.
+  2. Therefore, any infra-ish code assuming those model need to be rewritten anyways.
+  3. When you rewrite those parts, it's important to adopt the XLA mental model. 
+  4. Jax exposes XLA programming model exactly to the user in the most directly controllable way. Therefore it's the best choice.
 
 Besides the technical argument above, there is also a social argument of choosing JAX 
-if you have chosen TPU: Google uses it itself. I will not go into details on that.
+if you have chosen TPU: Google uses it itself. I will not go into details on this argument this time.
 
 ## 1. TPU vs. GPU the mental model
 
@@ -89,12 +90,14 @@ programs runnable in TPU. The graph itself is in [static single assignment](http
 Now, if we take in their differences in distributed settings, there are more:
 
 On Pytorch+GPU:
+
 * PyTorch will use one process per device (usually started with a launcher like `torchrun` or `slurm`)
 * Each device will see local program (shapes are per-device shape)
 * Communication ops are explicit in the Python program (either directly using `dist.all_gather` etc, or
   wrapped in some library like DTensor or the torch.dist's FSDP wrapper.)
 
 On TPU, XLA uses SPMD mode, which means:
+
 * Usually you do one process per host, and that process sees all 8 devices on your host.
 * You use mesh based API to specify sharding of a tensor (example: https://docs.jax.dev/en/latest/sharded-computation.html).
 * You see global shapes in your program
@@ -107,15 +110,8 @@ In other words: The GPU is a generic parallel computing hardware, and PyTorch ch
 many of the above property. TPU is a specialized hardware with XLA imposed it's computation model.
 You can also implement the XLA-like computation model on GPU; which is Jax-GPU.
 
-So now I'd like to state the thesis:
-
-> Migrating to TPU implies migrating to Jax
-
-Note that, the inverse is not true:
-
-> Migrating to Jax implies migrating to TPU
-
-as Jax on GPU is perfectly feasible.
+In other words, regardless whether you migrate to Jax, or to torch-xla, there gonna 
+be a sizable rewrites to acomodate the computational model differences.
 
 
 **Aside:** How does frameworks simulated eager model on TPU?
@@ -172,7 +168,7 @@ Let's go through few scenarios:
 ### 1. You are a model builder with a handful of models 
 
 Say, you are fundation model builder like Anthropic. You have one model that is your product (probably with different
-variants / sizes). However, to train this model, you might have a very complex
+variants / sizes, but it's architecture-wise one model (one `torch.nn.Module`)). However, to train this model, you might have a very complex
 infra setup in managing the clusters, fault tolerances, implementing different
 parallelisms etc etc. 
 
@@ -182,7 +178,7 @@ of TPU, so you want to do things the TPU way.
 
 Now, the model definition itself is actually small part of your codebase, so you might
 as well as rewrite it. You can get started with pointing your favorite 
-agent to it, or just discard it and start by forking a high quality Jax 
+LLM agent to it, or just discard it and start by forking a high quality Jax 
 reference implementation, like [maxtext](https://github.com/AI-Hypercomputer/maxtext) for LLMs
 and [maxdiffusion](https://github.com/AI-Hypercomputer/maxdiffusion) and go from there.
 
