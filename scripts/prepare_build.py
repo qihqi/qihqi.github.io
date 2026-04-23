@@ -10,8 +10,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 BUILD_ROOT = REPO_ROOT / "build"
 SOURCE_DOCS_DIR = REPO_ROOT / "docs"
 BUILD_DOCS_DIR = BUILD_ROOT / "docs"
-SOURCE_MKDOCS_CONFIG = REPO_ROOT / "mkdocs.yml"
-BUILD_MKDOCS_CONFIG = BUILD_ROOT / "mkdocs.yml"
+SOURCE_SITE_CONFIG = REPO_ROOT / "mkdocs.yml"
+BUILD_SITE_CONFIG = BUILD_ROOT / "mkdocs.yml"
 
 
 def main() -> int:
@@ -20,13 +20,13 @@ def main() -> int:
 
     BUILD_DOCS_DIR.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(SOURCE_DOCS_DIR, BUILD_DOCS_DIR)
-    BUILD_MKDOCS_CONFIG.write_text(build_mkdocs_config())
-    print("Prepared build/docs and build/mkdocs.yml")
+    BUILD_SITE_CONFIG.write_text(build_site_config())
+    print("Prepared build/docs and build/mkdocs.yml for Zensical")
     return 0
 
 
-def build_mkdocs_config() -> str:
-    original = SOURCE_MKDOCS_CONFIG.read_text()
+def build_site_config() -> str:
+    original = SOURCE_SITE_CONFIG.read_text()
     lines = []
     for line in original.splitlines():
         if line.startswith("docs_dir:") or line.startswith("site_dir:"):

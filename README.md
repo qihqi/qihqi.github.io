@@ -1,6 +1,6 @@
 # Cero vale todo
 
-This repository now uses MkDocs instead of Jekyll.
+This repository now uses Zensical.
 
 ## Local development
 
@@ -8,7 +8,7 @@ This repository now uses MkDocs instead of Jekyll.
 uv venv
 source .venv/bin/activate
 uv sync
-mkdocs serve
+zensical serve
 ```
 
 ## Build
@@ -29,7 +29,7 @@ make serve
 
 ## External GitHub Content
 
-Use `external-content.toml` to map files or directories from other GitHub repositories into this blog before the MkDocs build.
+Use `external-content.toml` to map files or directories from other GitHub repositories into this blog before the site build.
 
 Example:
 
@@ -42,10 +42,10 @@ target = "docs/posts/tpu-notes.md"
 mode = "copy"
 ```
 
-The GitHub Actions workflow runs `python scripts/sync_external_content.py` before `mkdocs build --strict`.
+The GitHub Actions workflow runs `python scripts/sync_external_content.py` before `zensical build`.
 
 Use `mode = "symlink"` when you want the blog to point at the fetched checkout inside `.cache/`, or `mode = "copy"` when you want a plain copied file or directory in the target location.
 
 If you need to fetch private repositories outside the default `GITHUB_TOKEN` scope, add an `EXTERNAL_CONTENT_GITHUB_TOKEN` repository secret with read access to those repos.
 
-Local builds stage content into `build/`: `make` copies `docs/` to `build/docs`, syncs external content into that staged tree, and then runs MkDocs with `build/mkdocs.yml`.
+Local builds stage content into `build/`: `make` copies `docs/` to `build/docs`, syncs external content into that staged tree, and then runs Zensical with the staged compatibility config at `build/mkdocs.yml`.

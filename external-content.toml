@@ -1,5 +1,5 @@
 # Each mapping pulls a file or directory from another GitHub repository
-# before the MkDocs build runs.
+# before the site build runs.
 #
 # repo   = "owner/name"
 # ref    = git branch, tag, or commit SHA (default: "main")
