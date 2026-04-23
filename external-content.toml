@@ -1,0 +1,23 @@
+# Each mapping pulls a file or directory from another GitHub repository
+# before the MkDocs build runs.
+#
+# repo   = "owner/name"
+# ref    = git branch, tag, or commit SHA (default: "main")
+# source = path inside the source repository
+# target = path inside this repository where the content should appear
+# mode   = "symlink" or "copy" (default: "symlink")
+#
+# Example:
+# [[mappings]]
+# repo = "octocat/Spoon-Knife"
+# ref = "main"
+# source = "README.md"
+# target = "docs/imported/spoon-knife.md"
+# mode = "copy"
+
+[[mappings]]
+repo = "qihqi/learning_machine"
+ref = "main"
+source = "jax-huggingface"
+target = "docs/posts/jax-huggingface"
+mode = "copy"

@@ -226,7 +226,7 @@ not expand here.
 ## 5. What if I insist on using torch on TPU?
 
 Torch on TPU as something that has same programming model as PyTorch-CUDA simply
-does not exist. Your choice here are to use [torch-xla](https://github.com/pytorch/xla) or [torchax](https://github.com/google/torchax).
+does not exist. Your choice here are to use [torch-xla](https://github.com/pytorch/xla) or [torchax](https://github.com/google/torchax). 
 
 Having worked on both projects, my key insight on their philosophical differences are:
 * torch-xla tries to hide the fact that there is a graph compilation going on, by abstracting

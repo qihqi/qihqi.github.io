@@ -2,6 +2,8 @@ site_name: Han's personal blog
 site_description: 
 theme:
   name: material
+  palette:
+    primary: custom
   features:
     - navigation.instant
     - navigation.top
@@ -26,7 +28,14 @@ plugins:
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
 nav:
   - Home: index.md
   - Blog:
       - "Migrating From Nvidia GPU to Google TPU": posts/migrating-nvidia-gpu-to-google-tpu.md
+      - "How to Run a Hugging Face Model in JAX (Part 4) - Diffusers": posts/jax-huggingface/04-run-hugging-face-model-in-jax.md
+      - "How to Run a Hugging Face Model in JAX (Part 2)": posts/jax-huggingface/02-run-huggingface-model-distributed.md
+      - "How to Run a Hugging Face Model in JAX (Part 3)": posts/jax-huggingface/03-run-huggingface-model-in-jax.md
+      - "How to Run a Hugging Face Model in JAX (Part 1)": posts/jax-huggingface/01-run-huggingface-model-in-jax.md

@@ -1,2 +1,5 @@
 .venv/
 site/
+.cache/
+.external-content-manifest.json
+build/
