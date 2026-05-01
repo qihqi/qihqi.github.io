@@ -2,8 +2,12 @@
 
 I write occasionally, mostly computer science stuff.
 
+I don't use AI to write, because if I do then it's no longer my voice.
+I sometimes use AI to generate code examples or diagrams.
+
 ## Posts
 
+- 2026-05-01 - [[What if] AI doesn't replace us, but commodizes us](posts/what-if-ai-commodizes-us.md)
 - 2026-04-26 - [Migrating From Nvidia GPU to Google TPU (part 2)](posts/migrating-pytorch-to-jax.md)
 - 2026-03-24 - [Migrating From Nvidia GPU to Google TPU (part 1)](posts/migrating-nvidia-gpu-to-google-tpu.md)
 - 2025-09-10 - [How to Run a Hugging Face Model in JAX (Part 4) - Diffusers](posts/jax-huggingface/04-run-hugging-face-model-in-jax.md)
