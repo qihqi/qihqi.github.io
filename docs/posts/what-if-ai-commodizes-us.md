@@ -38,3 +38,21 @@ I'd rather be in a world that nobody have jobs and nobody need to work, than one
 that we all get minimum-wage jobs, because anyone can do your job. Or one that 
 AI providers can charge me half of my salary, and I am required to pay for my own
 AI use.
+
+### Update on 2025-05-07
+
+Chatted with more people, and reflected more on this. Now I realized that the 
+*comodization process* is always on going with or without AI. 
+From replacing punch cards with
+assembly, then compiler, then higher-level languages, then low-code drag-and-drop platforms,
+and now AI. The barrier is getting lower and lower. At the same time, the education floor is also 
+raising, fast. In dynasty times, knowing read and write earns you a living. Now it's expected of
+anyone graduated from high school. And that is good.
+
+Overtime, power concentrates as Matthew's Law dictates, but we are experienced of fighting such
+concentration since the industrial revolution. We achieved the 40hr workweek in this process. What is 
+the next achievement? 3-day 21-hr workweek maybe?
+
+Comodization means no human being is above another human being in terms of opportunity and capability to achieve anything,
+and that is a good thing. I as a software engineer am is fugible as hell, but so is my manager, my director, my VP and the CEO.
+They can replace me with AI, so I can replace them with AI too.
